@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Movimiento_Mantequilla : MonoBehaviour
 {
+    [SerializeField] private ParticleSystem particulas;
     Animator animator;
 
     //Run
@@ -53,6 +54,7 @@ public class Movimiento_Mantequilla : MonoBehaviour
 
         if (Input.GetButton("Crouch"))
         {
+
             if (horizontal != 0) // Si el personaje está moviéndose horizontalmente
             {
                 isSliding = true;
@@ -125,12 +127,14 @@ public class Movimiento_Mantequilla : MonoBehaviour
 
     void FixedUpdate()
     {
+
         Vector3 newPosition = transform.position;
 
         if ((horizontal != 0 || vertical != 0) && !isCrouching && !isSliding)
         {
             Vector3 movement = new Vector3(horizontal * runSpeed, vertical * runSpeed, 0.0f);
             newPosition += movement * Time.deltaTime;
+            particulas.Play();
         }
 
         if (isSliding)
@@ -146,6 +150,7 @@ public class Movimiento_Mantequilla : MonoBehaviour
 
         transform.position = newPosition;
         Flip(horizontal);
+
         AdjustScaleBasedOnY(); //Ajustar la scala basada en la posicion Y
     }
 
