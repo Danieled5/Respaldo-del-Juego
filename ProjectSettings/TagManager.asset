@@ -9,6 +9,7 @@ TagManager:
   - Tenedor
   - PickableObject
   - PlayerAttack
+  - Enemy
   layers:
   - Default
   - TransparentFX
