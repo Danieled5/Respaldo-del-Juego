@@ -4,15 +4,25 @@ using UnityEngine;
 
 public class Ayudante : MonoBehaviour
 {
-    public Transform jugador; 
-    public float velocidad = 3f; 
-    public float distanciaSeguir = 2f;  
-    public float distanciaAtaque = 5f; 
-    public float velocidadAtaque = 5f; 
-    private Transform enemigoObjetivo; 
+    public Transform jugador; // Referencia al jugador
+    public float velocidad = 3f; // Velocidad de movimiento del ayudante
+    public float distanciaSeguir = 2f; // Distancia a la que seguirá al jugador
+    public float distanciaAtaque = 5f; // Distancia a la que atacará a los enemigos
+    public float velocidadAtaque = 5f; // Velocidad de movimiento hacia el enemigo
+    private Transform enemigoObjetivo; // Referencia al enemigo objetivo
+
+    void Start()
+    {
+        if (jugador == null)
+        {
+            Debug.LogError("La referencia al jugador no está asignada en el inspector.");
+        }
+    }
 
     void Update()
     {
+        if (jugador == null) return;
+
         if (enemigoObjetivo == null)
         {
             // Seguir al jugador
